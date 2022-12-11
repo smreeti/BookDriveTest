@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- HTML Header-->
+<%- include('layouts/header') -%>
+
+    <body>
+        <!-- Navigation -->
+        <%- include('layouts/navbar') -%>
+
+            <!-- Page Header-->
+            <header class="masthead" id="loginBanner">
+                <div class="container position-relative px-4 px-lg-5">
+                    <div class="row gx-4 gx-lg-5 justify-content-center">
+                        <div class="col-md-10 col-lg-8 col-xl-7">
+                            <div class="site-heading">
+                                <h1>Examiner</h1>
+                                <span class="subheading">Welcome to Examiner Page</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <main>
+                <a href="/examiner">All</a>
+                <a href="/examiner?testType=G2">G2</a>
+                <a href="/examiner?testType=G">G</a>
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Firstname</th>
+                            <th>Lastname</th>
+                            <th>License Number</th>
+                            <th> Test Type</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <% for(let i=0; i< userInfo.length; i ++){ %>
+                            <tr>
+                                <td>
+                                    <%= userInfo[i].firstName %>
+                                </td>
+                                <td>
+                                    <%= userInfo[i].lastName %>
+                                </td>
+                                <td>
+                                    <%= userInfo[i].licenseNumber %>
+                                </td>
+                                <td>
+                                    <%= userInfo[i].testType %>
+                                </td>
+                                <td><a href="/examiner/detail/<%= userInfo[i]._id %>">See Detail</a></td>
+                            </tr>
+                            <% } %>
+                    </tbody>
+                </table>
+            </main>
+
+            <!--Footer-->
+            <%- include('layouts/footer') -%>
+    </body>
+
+</html>

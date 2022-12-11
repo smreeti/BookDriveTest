@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- HTML Header-->
+<%- include('layouts/header') -%>
+    <%- include('layouts/summerNote') -%>
+
+        <body>
+            <!-- Navigation -->
+            <%- include('layouts/navbar') -%>
+
+                <!-- Page Header-->
+                <header class="masthead" id="g2TestBanner">
+                    <div class="container position-relative px-4 px-lg-5">
+                        <div class="row gx-4 gx-lg-5 justify-content-center">
+                            <div class="col-md-10 col-lg-8 col-xl-7">
+                                <div class="site-heading">
+                                    <h1>G2 Test</h1>
+                                    <span class="subheading">Examiner Detail Page</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+
+                <main>
+                    <form class="examiner_form" action="/examiner/submitExaminerReview" method="POST">
+                        <input type="hidden" id="userId" name="userId" value="<%=userInfo?._id %>">
+
+                        <fieldset>
+                            <legend>Personal Information </legend>
+                            <div class="form_container">
+                                <label for="firstName"><b>First Name</b></label>
+                                <span class="required">*</span>
+                                <input type="text" placeholder="Enter First Name" name="firstName"
+                                    value="<%=userInfo?.firstName %>" disabled>
+
+                                <label for="lastName"><b>Last Name</b></label>
+                                <span class="required">*</span>
+                                <input type="text" placeholder="Enter Last Name" name="lastName" value="<%=userInfo?.lastName
+                                %>" disabled>
+
+                                <label for="licenseNumber"><b>License Number</b></label>
+                                <span class="required">*</span>
+                                <input type="text" placeholder="Enter License Number (Must be 8 digits)"
+                                    name="licenseNumber" minlength="8" maxlength="8"
+                                    value="<%=userInfo?.licenseNumber %>" disabled>
+
+                                <label for="testType"><b>Test Type</b></label>
+                                <span class="required">*</span>
+                                <input type="text" placeholder="Enter Test Type" name="testType"
+                                    value="<%=userInfo?.testType %>" disabled>
+                            </div>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend> Car Information </legend>
+                            <div class="form_container">
+
+                                <label for="make"><b>Make</b></label>
+                                <span class="required">*</span>
+                                <input type="text" placeholder="Enter make" name="make" disabled
+                                    value=<%=userInfo?.carDetails?.make %>
+                                >
+
+                                <label for="model"><b>Model</b></label>
+                                <span class="required">*</span>
+                                <input type="text" placeholder="Enter model" name="model" disabled
+                                    value=<%=userInfo?.carDetails?.model %>>
+
+                                <label for="year"><b>Year</b></label>
+                                <span class="required">*</span>
+                                <input type="number" placeholder="Enter year" name="year" disabled
+                                    value=<%=userInfo?.carDetails?.year %> >
+
+                                <label for="plateNumber"><b>Plate Number</b></label>
+                                <span class="required">*</span>
+                                <input type="text" placeholder="Enter Plate Number" name="plateNumber" disabled
+                                    value=<%=userInfo?.carDetails?.plateNumber %> >
+                            </div>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend> Examiner Review </legend>
+
+                            <div class="form_container">
+                                <label for="result"><b>Result</b></label>
+                                <span class="required">*</span>
+                                <select name="result" required>
+
+                                    <% if(userInfo?.result=="Pass" || userInfo?.result=="" ||
+                                        typeof(userInfo.result)=="undefined" ) { %>
+                                        <option value="Pass" selected="Pass">Pass
+                                        </option>
+                                        <option value="Fail"> Fail
+                                        </option>
+                                        <%} %>
+
+                                            <% if(userInfo?.result=="Fail" ) { %>
+                                                <option value="Pass">Pass
+                                                </option>
+                                                <option value="Fail" selected="Fail"> Fail
+                                                </option>
+                                                <%} %>
+                                </select>
+
+                                <label for="comments"><b>Comments</b></label>
+                                <span class="required">*</span>
+                                <textarea id="comments" name="comments" class="form-control" required
+                                    value="<%=userInfo?.comments %>">
+                                     </textarea>
+                                <script>
+                                    $('#comments').summernote({
+                                        placeholder: 'Enter your comments here..',
+                                        tabsize: 2,
+                                        height: 200
+                                    });
+                                    const comments = $("#comments").attr("value");
+
+                                    $('#comments').summernote("code", comments);
+                                </script>
+                            </div>
+                        </fieldset>
+                        <div class="button_container">
+                            <button type="submit">Update</button>
+                        </div>
+                    </form>
+                </main>
+
+                <!--Footer-->
+                <%- include('layouts/footer') -%>
+        </body>
+
+</html>

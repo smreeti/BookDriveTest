@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- HTML Header-->
+<%- include('layouts/header') -%>
+
+    <body>
+        <!-- Navigation -->
+        <%- include('layouts/navbar') -%>
+
+            <!-- Page Header-->
+            <header class="masthead" id="g2TestBanner">
+                <div class="container position-relative px-4 px-lg-5">
+                    <div class="row gx-4 gx-lg-5 justify-content-center">
+                        <div class="col-md-10 col-lg-8 col-xl-7">
+                            <div class="site-heading">
+                                <h1>G2 Test</h1>
+                                <span class="subheading">G2 Test Booking Page</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <main>
+
+                <form class="g2_test_form" action="/submitG2" method="POST">
+                    <fieldset>
+                        <legend>Personal Information </legend>
+                        <div class="form_container">
+                            <label for="firstName"><b>First Name</b></label>
+                            <span class="required">*</span>
+                            <input type="text" placeholder="Enter First Name" name="firstName"
+                                value="<%=userInfo?.firstName %>" required>
+
+                            <label for="lastName"><b>Last Name</b></label>
+                            <span class="required">*</span>
+                            <input type="text" placeholder="Enter Last Name" name="lastName" value="<%=userInfo?.lastName
+                                %>" required>
+
+                            <label for="licenseNumber"><b>License Number</b></label>
+                            <span class="required">*</span>
+                            <input type="text" placeholder="Enter License Number (Must be 8 digits)"
+                                name="licenseNumber" minlength="8" maxlength="8" value="<%=userInfo?.licenseNumber %>"
+                                required>
+
+                            <label for="age"><b>Age</b></label>
+                            <span class="required">*</span>
+                            <input type="number" placeholder="Enter Age" name="age" value="<%=userInfo?.age %>"
+                                required>
+
+                            <label for="dob"><b>DOB</b></label>
+                            <span class="required">*</span>
+                            <input type="date" placeholder="Enter dob" name="dob"
+                                value="<%=userInfo?.dob.toISOString().split('T')[0] %>" required>
+                        </div>
+                    </fieldset>
+
+                    <fieldset>
+                        <div class="form_container">
+                            <legend> Car Information </legend>
+                            <label for="make"><b>Make</b></label>
+                            <span class="required">*</span>
+                            <input type="text" placeholder="Enter make" name="make" required
+                                value=<%=userInfo?.carDetails?.make %>
+                            >
+
+                            <label for="model"><b>Model</b></label>
+                            <span class="required">*</span>
+                            <input type="text" placeholder="Enter model" name="model" required
+                                value=<%=userInfo?.carDetails?.model %>>
+
+                            <label for="year"><b>Year</b></label>
+                            <span class="required">*</span>
+                            <input type="number" placeholder="Enter year" name="year" required
+                                value=<%=userInfo?.carDetails?.year %> >
+
+                            <label for="plateNumber"><b>Plate Number</b></label>
+                            <span class="required">*</span>
+                            <input type="text" placeholder="Enter Plate Number" name="plateNumber" required
+                                value=<%=userInfo?.carDetails?.plateNumber %> >
+                        </div>
+                    </fieldset>
+
+                    <fieldset>
+                        <input type="hidden" id="allAppointmentInfo" name="allAppointmentInfo"
+                            value="<%= JSON.stringify(appointmentInfo) %>">
+                        <legend> Appointment Information </legend>
+                        <div class="form_container">
+
+                            <label for="appointmentDate"><b>Appointment Date</b></label>
+                            <span class="required">*</span>
+                            <input type="date" placeholder="Enter Appointment Date" name="appointmentDate"
+                                id="appointmentDate" value="<%= userInfo?.appointmentId ?  (userInfo?.appointmentId?.appointmentDate)
+                            ?.toISOString().split("T")[0] : new Date(new Date() - (new Date().getTimezoneOffset() *
+                                60000)).toISOString().split("T")[0] %>"
+                            required>
+
+                            <label for="appointmentTime"><b>Appointment Time</b></label>
+                            <span class="required">*</span>
+                            <select name="appointmentTime" class="appointmentTime" id="appointmentTime"
+                                value="<%= userInfo?.appointmentId?.appointmentTime %>">
+                            </select>
+                        </div>
+                    </fieldset>
+
+                    <div class="button_container">
+                        <button type="submit">Update</button>
+                    </div>
+                </form>
+            </main>
+
+            <!--Footer-->
+            <%- include('layouts/footer') -%>
+
+                <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+                    integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+                <script src="js/script.js"></script>
+    </body>
+
+</html>

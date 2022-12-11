@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- HTML Header-->
+<%- include('layouts/header') -%>
+
+    <body>
+        <!-- Navigation -->
+        <%- include('layouts/navbar') -%>
+
+            <!-- Page Header-->
+            <header class="masthead" id="loginBanner">
+                <div class="container position-relative px-4 px-lg-5">
+                    <div class="row gx-4 gx-lg-5 justify-content-center">
+                        <div class="col-md-10 col-lg-8 col-xl-7">
+                            <div class="site-heading">
+                                <h1>Appointment</h1>
+                                <span class="subheading">Welcome to Appointment Page</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <main>
+
+                <form class="form" action="/saveAppointment" method="POST">
+                    <% if(exitsErrors !=null && exitsErrors.length> 0) { %>
+                        <ul class="list-group">
+                            <li class="list-group-item list-group-item-danger">
+                                The selected appointment date and time already exits. Please try unique values.
+                                </a></li>
+                        </ul>
+                        <%} %>
+
+                            <div class="form_container">
+                                <label for="appointmentDate"><b>Appointment Date</b></label>
+                                <span class="required">*</span>
+                                <input type="date" placeholder="Enter Appointment Date" name="appointmentDate"
+                                    value="<%= new Date(new Date() - (new Date().getTimezoneOffset() * 60000 )).toISOString() .split("T")[0] %>" required>
+
+                                <label for="appointmentTime"><b>Appointment Time</b></label>
+                                <span class="required">*</span>
+                                <select name="appointmentTime" class="appointmentTime">
+                                    <option value="9:00 AM"> 9:00 AM
+                                    </option>
+                                    <option value="9:30 AM"> 9:30 AM
+                                    </option>
+                                    <option value="10:00 AM"> 10:00 AM
+                                    </option>
+                                    <option value="10:30 AM"> 10:30 AM
+                                    </option>
+                                    <option value="11:00 AM"> 11:00 AM
+                                    </option>
+                                    <option value="11:30 AM"> 11:30 AM
+                                    </option>
+                                    <option value="12:00 PM"> 12:00 PM
+                                    </option>
+                                    <option value="12:30 PM"> 12:30 PM
+                                    </option>
+                                    <option value="1:00 PM"> 1:00 PM
+                                    </option>
+                                    <option value="1:30 PM"> 1:30 PM
+                                    </option>
+                                    <option value="2:00 PM"> 2:00 PM
+                                    </option>
+                                    </option>
+                                </select>
+
+                                <div class="button_container">
+                                    <button type="submit">Save</button>
+                                </div>
+                            </div>
+                </form>
+            </main>
+
+            <!--Footer-->
+            <%- include('layouts/footer') -%>
+    </body>
+
+</html>
