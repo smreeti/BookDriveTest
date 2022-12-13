@@ -10,7 +10,7 @@ const signUp = (req, res) => {
         password = data.password;
     }
 
-    return res.render('signUp', {
+    return res.render('signup', {
         passwordError: false,
         errors: req.flash('validationErrors'),
         username: username,
@@ -29,7 +29,7 @@ const signUpUser = async (req, res) => {
 
     try {
         await User.create(req.body);
-        return res.redirect('login');
+        return res.redirect('/login');
     } catch (error) {
         const validationErrors = Object.keys(error.errors).map(key => {
             return error.errors[key].message
