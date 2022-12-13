@@ -7,6 +7,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const expressSession = require('express-session');
 const flash = require('connect-flash');
+const mongoStore = require('connect-mongo');
 
 /* Declaring global variables that will be accessible from all EJS files */
 global.userId = '';
@@ -22,7 +23,11 @@ app.set('view engine', 'ejs');
 
 /*Use express session to store the information in the browser*/
 app.use(expressSession({
-    secret: process.env.SESSION_SECRET
+    secret: process.env.SESSION_SECRET,
+    store: mongoStore.create({
+        autoRemove:true,
+        mongoUrl: process.env.MONGO_SESSION_URL
+    })
 }))
 
 app.use("*", (req, res, next) => {
@@ -36,6 +41,7 @@ app.use("*", (req, res, next) => {
 app.use(flash());
 app.use(route);
 app.use((req, res) => res.render('notfound')); //creating a 404 page for non-existing route
+
 
 mongoose.connect(process.env.MONGO_URL,
     { useUnifiedTopology: true, useNewUrlParser: true }, (error) => {
