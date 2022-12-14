@@ -1,6 +1,6 @@
 const User = require('../models/User.js');
 
-module.exports = (req, res, next) => {
+module.exports = async (req, res, next) => {
     const userId = req.session.userId;
     const userType = req.session.userType;
 
@@ -13,7 +13,7 @@ module.exports = (req, res, next) => {
             console.log("User is not Driver type");
             return res.redirect('/');
         } else {
-            User.findById(userId, (error, user) => {
+            await User.findById(userId, (error, user) => {
                 if (error || !user) {
                     console.log("User not present in the database")
                     return res.redirect('/');
