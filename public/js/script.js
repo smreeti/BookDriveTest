@@ -32,6 +32,10 @@ $(document).ready(() => {
         }
     }
 
+    const padDigit = (text) => {
+        return text.padStart(2, '0');
+    }
+    
     //fetch appointment info on application load
     filterAppointmentTime();
 
