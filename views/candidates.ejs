@@ -23,12 +23,14 @@
             </header>
 
             <main>
-                <a href="/candidates">All</a>
-                <a href="/candidates?resultType=Pass">Pass</a>
-                <a href="/candidates?resultType=Fail">Fail</a>
+                <div class="candidates_categories">
+                    <a href="/candidates">All</a>
+                    <a href="/candidates?resultType=Pass">Pass</a>
+                    <a href="/candidates?resultType=Fail">Fail</a>
+                </div>
 
                 <% if(userInfo.length>0) {%>
-                    <table class="table">
+                    <table class="table candidates_results">
                         <thead>
                             <tr>
                                 <th>Firstname</th>
@@ -62,9 +64,11 @@
                         </tbody>
                     </table>
                     <% }%>
-
+                    
                         <% if(userInfo.length<=0) {%>
-                            <p> No Candidates yet!</p>
+                            <div class="text-center">
+                                <p> No Candidates yet!</p>
+                            </div>
                             <% }%>
             </main>
 

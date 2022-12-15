@@ -15,7 +15,7 @@
                         <div class="col-md-10 col-lg-8 col-xl-7">
                             <div class="site-heading">
                                 <h1>Result</h1>
-                                <span class="subheading">Result</span>
+                                <span class="subheading">Welcome to Result Page</span>
                             </div>
                         </div>
                     </div>
@@ -23,13 +23,18 @@
             </header>
 
             <main>
-
-                <!--add css based on user result-->
-                <%= userResult %>
-                    <% if(examinerComment!=null) {%>
-                        <p>Examiner Comment : <%- examinerComment %>
-                        </p>
+                <div class="driver_results">
+                    <fieldset>
+                        <legend> &nbsp;Your Results &nbsp;</legend>
+                        <!--add css based on user result-->
+                        <span class="label">Status:</span>
+                        <span class="value"><%= userResult %></span>
+                        <% if(examinerComment!=null) {%>
+                            <span class="label">Examiner Comments :</span>
+                            <span class="value"><%- examinerComment %></p>
                         <% }%>
+                    </fieldset>
+                </div>
 
             </main>
 

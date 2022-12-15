@@ -11744,9 +11744,71 @@ span.psw {
   font-style: italic;
 }
 
-.g2_test_form, .examiner_form {
+.g2_test_form, .examiner_form, .driver_results {
   margin: 20px auto;
   width: 50%;
+}
+
+.examiner_results, .candidates_results {
+  margin:  auto auto 50px;
+  width: 80%;
+}
+
+.results_categories, .candidates_categories {
+  width: max-content;
+  margin: 0 auto 32px;
+}
+
+.results_categories a, .candidates_categories a {
+  width: 400px !important;
+  border-radius: 4px;
+  padding: 8px 18px;
+  background-color: #007189;
+  color: #fff;
+  margin-right: 16px;
+}
+
+.results_categories a:hover, .candidates_categories a:hover {
+  background-color: #04aa6d;
+}
+
+.examiner_results tbody, .candidates_results tbody {
+  text-align: center;
+}
+
+.examiner_results td, .examiner_results th, .candidates_results td, .candidates_results th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.examiner_results tr:nth-child(even), .candidates_results tr:nth-child(even){background-color: #f2f2f2;}
+
+.examiner_results tr:hover, .candidates_results tr:hover {background-color: #ddd;}
+
+.examiner_results th, .candidates_results th {
+  padding: 12px;
+  text-align: center;
+  background-color: #04AA6D;
+  color: white;
+}
+
+.driver_results fieldset {
+  display: flex;
+  flex-direction: column;
+}
+
+.driver_results legend {
+  text-align: center;
+}
+
+.driver_results fieldset .label {
+  font-size: 18px;
+  color:#41464b;
+  font-weight: 600;
+}
+
+.driver_results fieldset .value {
+  color:#0085a1;
 }
 
 fieldset {
