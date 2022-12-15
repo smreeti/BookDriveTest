@@ -5,6 +5,7 @@ const examiner = async (req, res) => {
 
     let filteredUsers = await User.find({ 'appointmentId': { $ne: null }, 'userType': 'Driver' }).populate('appointmentId');
 
+    console.log(filteredUsers);
     if (testType == "G2") {
         filteredUsers = filteredUsers.filter(user => user.testType === "G2");
     } else if (testType == "G") {

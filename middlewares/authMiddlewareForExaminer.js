@@ -13,12 +13,11 @@ module.exports = async (req, res, next) => {
             console.log("User is not Examiner type");
             return res.redirect('/');
         } else {
-            await User.findById(userId, (error, user) => {
-                if (error || !user) {
-                    console.log("User not present in the database")
-                    return res.redirect('/');
-                }
-            })
+            const user = await User.findById(userId);
+            if (!user) {
+                console.log("User not present in the database")
+                return res.redirect('/');
+            }
         }
     }
 
