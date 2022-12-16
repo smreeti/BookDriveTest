@@ -27,12 +27,14 @@
                     <fieldset>
                         <legend> &nbsp;Your Results &nbsp;</legend>
                         <!--add css based on user result-->
-                        <span class="label">Status:</span>
-                        <span class="value"><%= userResult %></span>
+                        <span class="label">Status:
+                            <span class="value">
+                                <%= userResult %>
+                            </span></span>
                         <% if(examinerComment!=null) {%>
                             <span class="label">Examiner Comments :</span>
-                            <span class="value"><%- examinerComment %></p>
-                        <% }%>
+                            <span> <%- examinerComment %></span>
+                            <% }%>
                     </fieldset>
                 </div>
 

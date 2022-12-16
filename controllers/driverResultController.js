@@ -5,7 +5,7 @@ const viewResult = async (req, res) => {
     let userResult;
 
     if (userInfo?.appointmentId) {
-        userResult = userInfo?.result || "unpublished";
+        userResult = userInfo?.result || "Unpublished";
     } else {
         userResult = "Appointment not booked yet!";
     }
